@@ -9,5 +9,5 @@ app.get('/', (request, response) => {
 })
 
 app.listen(3333, () => {
-  console.log('Backend started')
+  console.log('Backend started 🥶')
 })
