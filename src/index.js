@@ -4,11 +4,10 @@ const app = express()
 
 app.use(express.json())
 
+const users = []
+
 app.get('/projects', (request, response) => {
-  const { owner, project } = request.query
-  const body = request.body
-  console.log(body)
-  return response.json(['Projeto 1', 'Projeto 2'])
+  return response.json(users)
 })
 
 app.post('/projects', (request, response) => {
