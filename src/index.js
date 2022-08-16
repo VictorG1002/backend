@@ -2,11 +2,12 @@ const express = require('express')
 
 const app = express()
 
+app.use(express.json())
+
 app.get('/projects', (request, response) => {
   const { owner, project } = request.query
-  console.log(owner)
-  console.log(project)
-
+  const body = request.body
+  console.log(body)
   return response.json(['Projeto 1', 'Projeto 2'])
 })
 
@@ -15,6 +16,7 @@ app.post('/projects', (request, response) => {
 })
 
 app.put('/projects/:id', (request, response) => {
+  params = request.params
   return response.json(['Projeto 3', 'Projeto 2'])
 })
 
