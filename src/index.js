@@ -47,7 +47,18 @@ app.put('/users/:id', (request, response) => {
 })
 
 app.delete('/users/:id', (request, response) => {
-  return response.json(['Projeto 2'])
+  const { id } = request.params
+  const { name, age } = request.body
+
+  const userIndex = users.findIndex(user => user.id == id)
+
+  if (userIndex < 0) {
+    return response.status(400).json({ error: 'User not found' })
+  }
+
+  users.splice(userIndex, 1)
+
+  return response.status(204).send()
 })
 
 app.listen(3333, () => {
