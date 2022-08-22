@@ -7,6 +7,16 @@ app.use(express.json())
 
 const users = []
 
+function logRequests(request, response, next) {
+  const { method, url } = request
+  const logLabel = `[${method.toUpperCase()}] ${url}`
+
+  console.log(logLabel)
+  return next()
+}
+
+app.use(logRequests)
+
 app.get('/users', (request, response) => {
   const { name } = request.query
 
@@ -52,7 +62,6 @@ app.put('/users/:id', (request, response) => {
 
 app.delete('/users/:id', (request, response) => {
   const { id } = request.params
-  const { name, age } = request.body
 
   const userIndex = users.findIndex(user => user.id == id)
 
