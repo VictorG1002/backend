@@ -26,8 +26,24 @@ app.post('/users', (request, response) => {
 })
 
 app.put('/users/:id', (request, response) => {
-  params = request.params
-  return response.json(['Projeto 3', 'Projeto 2'])
+  const { id } = request.params
+  const { name, age } = request.body
+
+  const userIndex = users.findIndex(user => user.id == id)
+
+  if (userIndex < 0) {
+    return response.status(400).json({ error: 'User not found' })
+  }
+
+  const user = {
+    id,
+    name,
+    age
+  }
+
+  users[userIndex] = user
+
+  return response.json(user)
 })
 
 app.delete('/users/:id', (request, response) => {
