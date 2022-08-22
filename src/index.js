@@ -7,11 +7,11 @@ app.use(express.json())
 
 const users = []
 
-app.get('/projects', (request, response) => {
+app.get('/users', (request, response) => {
   return response.json(users)
 })
 
-app.post('/projects', (request, response) => {
+app.post('/users', (request, response) => {
   const { name, age } = request.body
 
   const user = {
@@ -22,15 +22,15 @@ app.post('/projects', (request, response) => {
 
   users.push(user)
 
-  return response.json(['Projeto 1', 'Projeto 2', 'Projeto 3'])
+  return response.json(user)
 })
 
-app.put('/projects/:id', (request, response) => {
+app.put('/users/:id', (request, response) => {
   params = request.params
   return response.json(['Projeto 3', 'Projeto 2'])
 })
 
-app.delete('/projects/:id', (request, response) => {
+app.delete('/users/:id', (request, response) => {
   return response.json(['Projeto 2'])
 })
 
