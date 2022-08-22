@@ -8,7 +8,11 @@ app.use(express.json())
 const users = []
 
 app.get('/users', (request, response) => {
-  return response.json(users)
+  const { name } = request.query
+
+  const results = name ? users.filter(user => user.name.includes(name)) : users
+
+  return response.json(results)
 })
 
 app.post('/users', (request, response) => {
